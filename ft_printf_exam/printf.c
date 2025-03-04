@@ -6,28 +6,13 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:33:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/04 19:35:48 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:40:49 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>  //teste
-#include <string.h> //teste
-
-static char	*ft_strchr(const char *str, int mangoloko)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == (unsigned char)mangoloko)  //casting
-			return ((char *)&str[i]);
-		i++;
-	}
-	return (NULL);
-}
+#include <stdio.h>
 
 static int ft_putchar(char c)
 {
@@ -78,6 +63,22 @@ static int	ft_printhex(unsigned long n)
 	return (result);
 }
 
+static char	*ft_strchr(const char *str, int mangoloko)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == (unsigned char)mangoloko)  //casting
+			return ((char *)&str[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+/*===========================================================================*/
+
 static int	verify_type(const char id, va_list arg_box)
 {
 	int result;
@@ -99,7 +100,7 @@ int	ft_printf(const char *format, ...)
 	int		index;
 	int		arg_counter;
 
-	type = "cspdiuxX%";
+	type = "sdx";
 	index = 0;
 	arg_counter = 0;
 	va_start(arg_box, format);
@@ -118,7 +119,8 @@ int	ft_printf(const char *format, ...)
 	return (arg_counter);
 }
 
-/*--------------------------------------*/
+/*===========================================================================*/
+
 int main(void)
 {
 	char *teste = "abcdef";
