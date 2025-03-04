@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:33:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/04 13:38:58 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:35:48 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 #include <stdio.h>  //teste
 #include <string.h> //teste
 
-static int ft_strchr(const char *str, int mangoloko)
+static char	*ft_strchr(const char *str, int mangoloko)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == c)
-			return (&c);
+		if (str[i] == (unsigned char)mangoloko)  //casting
+			return ((char *)&str[i]);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
 
 static int ft_putchar(char c)
@@ -39,7 +39,6 @@ static int ft_putstr(char *str)
 	int i;
 
 	i = 0;
-	printed = 0;
 	while (str[i] != '\0')
 	{
 		ft_putchar(str[i]);
@@ -48,7 +47,7 @@ static int ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_putnbr(int n)
+static int	ft_putnbr(int n)
 {
 	long	num;
 	int		counter;
@@ -66,7 +65,7 @@ int	ft_putnbr(int n)
 	return (counter);
 }
 
-static int	ft_print_adress(unsigned long n)
+static int	ft_printhex(unsigned long n)
 {
 	char	*hex_digits_lower;
 	int		result;
@@ -74,30 +73,52 @@ static int	ft_print_adress(unsigned long n)
 	result = 0;
 	hex_digits_lower = "0123456789abcdef";
 	if (n >= 16)
-		result += ft_print_adress(n / 16);
+		result += ft_printhex(n / 16);
 	result += ft_putchar(hex_digits_lower[n % 16]);
 	return (result);
 }
 
-static int	verify_type(const char *id, va_list *arg_box)
+static int	verify_type(const char id, va_list arg_box)
 {
 	int result;
 
 	result = 0;
 	if (id == 's')
-		result += ft_putstr(arg_box);
+		result += ft_putstr(va_arg(arg_box, char *));
 	if (id == 'd')
-		result += ft_putnbr(arg_box);
+		result += ft_putnbr(va_arg(arg_box, int));
 	if (id == 'x')
-		result += ft_printhex(arg_box);
+		result += ft_printhex(va_arg(arg_box, unsigned int));
 	return (result);
 }
 
-int ft_printf(const char *, ... )
+int	ft_printf(const char *format, ...)
 {
-	
+	char	*type;
+	va_list	arg_box;
+	int		index;
+	int		arg_counter;
+
+	type = "cspdiuxX%";
+	index = 0;
+	arg_counter = 0;
+	va_start(arg_box, format);
+	while (format[index] != '\0')
+	{
+		if ((format[index] == '%') && ft_strchr(type, format[index + 1]))
+		{
+			arg_counter += verify_type(format[index + 1], arg_box);
+			index++;
+		}
+		else
+			arg_counter += ft_putchar(format[index]);
+		index++;
+	}
+	va_end(arg_box);
+	return (arg_counter);
 }
 
+/*--------------------------------------*/
 int main(void)
 {
 	char *teste = "abcdef";
