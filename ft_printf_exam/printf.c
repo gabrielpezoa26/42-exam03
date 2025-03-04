@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:33:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/04 19:40:49 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:43:01 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,28 +95,28 @@ static int	verify_type(const char id, va_list arg_box)
 
 int	ft_printf(const char *format, ...)
 {
-	char	*type;
+	char	*types_array;
 	va_list	arg_box;
-	int		index;
-	int		arg_counter;
+	int		i;
+	int		counter;
 
-	type = "sdx";
-	index = 0;
-	arg_counter = 0;
+	types_array = "sdx";
+	i = 0;
+	counter = 0;
 	va_start(arg_box, format);
-	while (format[index] != '\0')
+	while (format[i] != '\0')
 	{
-		if ((format[index] == '%') && ft_strchr(type, format[index + 1]))
+		if ((format[i] == '%') && ft_strchr(types_array, format[i + 1]))
 		{
-			arg_counter += verify_type(format[index + 1], arg_box);
-			index++;
+			counter += verify_type(format[i + 1], arg_box);
+			i++;
 		}
 		else
-			arg_counter += ft_putchar(format[index]);
-		index++;
+			counter += ft_putchar(format[i]);
+		i++;
 	}
 	va_end(arg_box);
-	return (arg_counter);
+	return (counter);
 }
 
 /*===========================================================================*/
