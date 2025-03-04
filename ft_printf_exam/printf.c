@@ -6,13 +6,28 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:33:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/03 15:35:42 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:38:58 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
+#include <stdio.h>  //teste
+#include <string.h> //teste
+
+static int ft_strchr(const char *str, int mangoloko)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (&c);
+		i++;
+	}
+	return (0);
+}
 
 static int ft_putchar(char c)
 {
@@ -27,8 +42,7 @@ static int ft_putstr(char *str)
 	printed = 0;
 	while (str[i] != '\0')
 	{
-		write(1, &str[i], 1);
-		printed++;
+		ft_putchar(str[i]);
 		i++;
 	}
 	return (i);
