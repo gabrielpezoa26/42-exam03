@@ -6,13 +6,15 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:33:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/04 19:43:01 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/04 21:32:07 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdarg.h>
 #include <stdio.h>
+
+/*=================================libft====================================*/
 
 static int ft_putchar(char c)
 {
@@ -70,7 +72,7 @@ static char	*ft_strchr(const char *str, int mangoloko)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == (unsigned char)mangoloko)  //casting
+		if (str[i] == (unsigned char)mangoloko)
 			return ((char *)&str[i]);
 		i++;
 	}
