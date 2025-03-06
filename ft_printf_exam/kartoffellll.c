@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:32:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/06 11:14:50 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/06 19:02:38 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int ft_printhex(unsigned long n)
 	if (n >= 16)
 		ft_printhex(n / 16);
 	counter += ft_putchar(hex_array[n % 16]);
-	// write(1, &hex_array[n % 16]);
 	return (counter);
 }
 

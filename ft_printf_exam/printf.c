@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:33:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/05 17:43:40 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/06 19:47:43 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static char	*ft_strchr(const char *str, int mangoloko)
 
 /*===========================================================================*/
 
-static int	verify_type(const char id, va_list arg_box)
+static int	verify_and_call(const char id, va_list arg_box)
 {
 	int result;
 
@@ -110,7 +110,7 @@ int	ft_printf(const char *format, ...)
 	{
 		if ((format[i] == '%') && ft_strchr(types_array, format[i + 1]))
 		{
-			counter += verify_type(format[i + 1], arg_box);
+			counter += verify_and_call(format[i + 1], arg_box);
 			i++;
 		}
 		else
