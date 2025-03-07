@@ -31,7 +31,7 @@ int ft_putnbr(int number)
 	}
 	if (number >= 10)
 		ft_putnbr(number / 10);
-	count = ft_putchar(number % 10 + '0');
+	count += ft_putchar(number % 10 + '0');
 	return (count);
 }
 
@@ -87,18 +87,29 @@ int ft_printf(const char *format, ...)
 	while(format[i] != '\0')
 	{
 		if (format[i]== '%' && ft_strchr(types, format[i + 1]))
+		{
 			count += verify_and_call(format[i + 1], arg_box);
+			i++;
+		}
+		else
+			ft_putchar(format[i]);
 		i++;
 	}
+	va_end(arg_box);
 	return (count);
 }
 
 int main(void)
 {
-	int numberr = 123;
+	int number = 123;
+	char *string = "abcdef";
+	int hex = 42;
 
-	ft_printf("%d\n", numberr);
+	ft_printf("int:  %d\n", number);
+	ft_printf("string:  %s\n", string);
+	ft_printf("hexa:  %x\n", hex);
 }
+
 /*
 Assignment name  : ft_printf
 Expected files   : ft_printf.c
