@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <stdarg.h>
 
-//------------------LIBFT
 int ft_putchar(int c)
 {
 	write(1, &c, 1);
@@ -12,7 +11,7 @@ int ft_putstr(char *str)
 {
 	int i = 0;
 
-	while (str[i] != '\0')
+	while(str[i] != '\0')
 	{
 		ft_putchar(str[i]);
 		i++;
@@ -20,75 +19,70 @@ int ft_putstr(char *str)
 	return (i);
 }
 
-int ft_putnbr(int number)
+int ft_putnbr(int nbr)
 {
 	int count = 0;
 
-	if (number < 0)
+	if (nbr < 0)
 	{
 		count += ft_putchar('-');
-		number *= (-1);
+		nbr *= (-1);
 	}
-	if (number >= 10)
-		ft_putnbr(number / 10);
-	count += ft_putchar(number % 10 + '0');
+	if (nbr >= 10)
+		ft_putnbr(nbr / 10);
+	count += ft_putchar(nbr % 10 + '0');
 	return (count);
 }
 
-int ft_puthex(int number)
+int ft_puthex(unsigned int nbr)
 {
-	char *hex_array = "0123456789abcdef";
 	int count = 0;
+	char *hex = "0123456789abcdef";
 
-	if (number >= 16)
-	{
-		ft_puthex(number / 16);
-		count = ft_putchar(hex_array[number % 16]);
-	}
+	if (nbr >= 16)
+		ft_puthex(nbr / 16);
+	count += ft_putchar(hex[nbr % 16]);
 	return (count);
 }
 
-char *ft_strchr(char *string, int mangoloko)
+char *ft_strchr(char *string, int mango)
 {
 	int i = 0;
 
 	while(string[i] != '\0')
 	{
-		if (string[i] == (unsigned char)mangoloko)
-			return ((char *)&string[i]);
+		if (string[i] == (char)mango)
+			return((char *)&string[i]);
 		i++;
 	}
-	return NULL;
+	return (NULL);
 }
-
-//-----------------------------PRINTF
-int verify_and_call(const char id, va_list arg_box)
+int verify_and_apply(const char id, va_list arg_box)
 {
-	int result = 0;
+	int count = 0;
 
 	if (id == 'd')
-		result += ft_putnbr(va_arg(arg_box, int));
+		count += ft_putnbr(va_arg(arg_box, int));
 	if (id == 's')
-		result += ft_putstr(va_arg(arg_box, char *));
+		count += ft_putstr(va_arg(arg_box, char *));
 	if (id == 'x')
-		result += ft_puthex(va_arg(arg_box, unsigned int));
-	return (result);
+		count += ft_puthex(va_arg(arg_box, unsigned int));
+	return (count);
 }
 
 int ft_printf(const char *format, ...)
 {
 	char *types = "dsx";
-	va_list arg_box;
-
-	int i = 0;
+	va_list(arg_box);
 	int count = 0;
+	int i = 0;
 
 	va_start(arg_box, format);
 	while(format[i] != '\0')
 	{
-		if (format[i]== '%' && ft_strchr(types, format[i + 1]))
+		if (format[i] == '%' && ft_strchr(types, format[i + 1]))
 		{
-			count += verify_and_call(format[i + 1], arg_box);
+			count += verify_and_apply(format[i + 1], arg_box);
 			i++;
 		}
 		else
@@ -102,14 +96,15 @@ int ft_printf(const char *format, ...)
 int main(void)
 {
 	int number = 123;
-	char *string = "abcdef";
+	char *str = "oiiiiiii";
 	int hex = 42;
+	int hex2 = 10;
 
-	ft_printf("int:  %d\n", number);
-	ft_printf("string:  %s\n", string);
-	ft_printf("hexa:  %x\n", hex);
+	ft_printf("int: %d\n", number);
+	ft_printf("string: %s\n", str);
+	ft_printf("hex value: %x\n", hex);
+	ft_printf("hex value2: %x\n", hex2);
 }
-
 /*
 Assignment name  : ft_printf
 Expected files   : ft_printf.c

@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 17:32:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/06 19:02:38 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/07 07:40:33 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ int	ft_putnbr(int n)
 	return (counter);
 }
 
-int ft_printhex(unsigned long n)
+int ft_puthex(unsigned long n)
 {
 	char *hex_array = "0123456789abcdef";
 	int counter = 0;
 	if (n >= 16)
-		ft_printhex(n / 16);
+		ft_puthex(n / 16);
 	counter += ft_putchar(hex_array[n % 16]);
 	return (counter);
 }
@@ -84,7 +84,7 @@ int ft_verify_type(const char id, va_list arg_box)
 	if (id == 's')
 		result += ft_putstr(va_arg(arg_box, char *));
 	if (id == 'x')
-		result += ft_printhex(va_arg(arg_box, unsigned int));
+		result += ft_puthex(va_arg(arg_box, unsigned int));
 	return (result);
 }
 

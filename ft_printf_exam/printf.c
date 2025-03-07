@@ -6,7 +6,7 @@
 /*   By: gcesar-n <gcesar-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 15:33:13 by gcesar-n          #+#    #+#             */
-/*   Updated: 2025/03/06 19:47:43 by gcesar-n         ###   ########.fr       */
+/*   Updated: 2025/03/07 07:40:33 by gcesar-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	ft_putnbr(int n)
 	return (counter);
 }
 
-static int	ft_printhex(unsigned long n)
+static int	ft_puthex(unsigned long n)
 {
 	char	*hex_digits_lower;
 	int		result;
@@ -60,7 +60,7 @@ static int	ft_printhex(unsigned long n)
 	result = 0;
 	hex_digits_lower = "0123456789abcdef";
 	if (n >= 16)
-		result += ft_printhex(n / 16);
+		result += ft_puthex(n / 16);
 	result += ft_putchar(hex_digits_lower[n % 16]);
 	return (result);
 }
@@ -91,7 +91,7 @@ static int	verify_and_call(const char id, va_list arg_box)
 	if (id == 'd')
 		result += ft_putnbr(va_arg(arg_box, int));
 	if (id == 'x')
-		result += ft_printhex(va_arg(arg_box, unsigned int));
+		result += ft_puthex(va_arg(arg_box, unsigned int));
 	return (result);
 }
 
