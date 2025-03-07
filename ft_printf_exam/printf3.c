@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <stdarg.h>
 
+//------------------LIBFT
 int ft_putchar(int c)
 {
 	write(1, &c, 1);
@@ -60,6 +61,7 @@ char *ft_strchr(char *string, int mangoloko)
 	return NULL;
 }
 
+//-----------------------------PRINTF
 int verify_and_call(const char id, va_list arg_box)
 {
 	int result = 0;
@@ -77,6 +79,7 @@ int ft_printf(const char *format, ...)
 {
 	char *types = "dsx";
 	va_list arg_box;
+
 	int i = 0;
 	int count = 0;
 
