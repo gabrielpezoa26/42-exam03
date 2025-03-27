@@ -42,37 +42,6 @@ char	*ft_strdup(char *src)
 	return (dest);
 }
 
-// char	*get_next_line(int fd)
-// {
-// 	static char	buffer[BUFFER_SIZE];
-// 	static int	position;
-// 	static int	size_read;
-// 	char	line[70000];
-// 	int	i = 0;
-
-// 	if (fd < 0 || BUFFER_SIZE <= 0)
-// 		return (NULL);
-// 	while (1)
-// 	{
-// 		if (position >= size_read)
-// 		{
-// 			size_read = read(fd, buffer, BUFFER_SIZE);
-// 			position = 0;
-// 			if (size_read == 0)
-// 				break ;
-// 		}
-// 		line[i++] = buffer[position++];
-// 		if (buffer[position] == '\n')
-// 			break ;
-// 	}
-// 	line[i] = '\0';
-// 	if (i == 0)
-// 		return (NULL);
-// 	return (ft_strdup(line)); 
-// }
-
-
-
 char *get_next_line(int fd)
 {
 	static char buffer[BUFFER_SIZE];
@@ -110,6 +79,7 @@ int	main(void)
 	int	fd;
 
 	fd = open("test.txt", O_RDONLY);
+	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));
 	printf("%s", get_next_line(fd));

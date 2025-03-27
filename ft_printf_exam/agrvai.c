@@ -96,7 +96,7 @@ int ft_printf(const char *format, ...)
 	return (count);
 }
 
-
+//teste
 int main()
 {
 	int number = 123;
