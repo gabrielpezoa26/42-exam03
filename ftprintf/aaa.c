@@ -1,66 +1,61 @@
 #include <unistd.h>
+#include <stdlib.h>
 #include <stdarg.h>
 
-int ft_putchar(int c)
+
+static int ft_putchar(int c)
 {
 	write(1, &c, 1);
 	return (1);
 }
 
-int ft_putstr(char *str)
-{
-	int i = 0;
-
-	while (str[i] != '\0')
-	{
-		ft_putchar(str[i]);
-		i++;
-	}
-	return (i);
-}
-
-int ft_putnbr(int number)
+static int ft_putnbr(int number)
 {
 	int count = 0;
 
-	if (number < 0)
-	{
-		count += ft_putchar('-');
-		number *= (-1);
-	}
 	if (number >= 10)
 		ft_putnbr(number / 10);
 	count += ft_putchar(number % 10 + '0');
 	return (count);
 }
+static int ft_putstr(char *str)
 
-int ft_puthex(int number)
 {
-	char *hex_array = "0123456789abcdef";
 	int count = 0;
 
-	if (number >= 16)
+	while (str[count] != '\0')
 	{
-		ft_puthex(number / 16);
-		count = ft_putchar(hex_array[number % 16]);
+		ft_putchar(str[count]);
+		count++;
 	}
 	return (count);
 }
 
-char *ft_strchr(char *string, int to_find)
+static int ft_puthex(int number)
+{
+	char *array = "0123456789abcdef";
+	int count = 0;
+
+	if (number >= 16)
+		ft_puthex(number / 16);
+	count += ft_putchar(array[number] % 16);
+	return (count);
+}
+
+static char *ft_strchr(const char *string, int to_find)
 {
 	int i = 0;
 
-	while(string[i] != '\0')
+	while(string[i])
 	{
-		if (string[i] == (unsigned char)to_find)
+		if (string[i] == (char)to_find)
 			return ((char *)&string[i]);
 		i++;
 	}
 	return (NULL);
 }
 
-int verify_and_call(const char id, va_list arg_box)
+static int verify_and_call(const char id, va_list arg_box)
 {
 	int count = 0;
 
@@ -73,7 +68,7 @@ int verify_and_call(const char id, va_list arg_box)
 	return (count);
 }
 
-int ft_printf(const char *format, ...)
+int ft_printf(const char *format, ... )
 {
 	char *types = "dsx";
 	va_list arg_box;
@@ -83,7 +78,7 @@ int ft_printf(const char *format, ...)
 	va_start(arg_box, format);
 	while(format[i] != '\0')
 	{
-		if (format[i]== '%' && ft_strchr(types, format[i + 1]))
+		if (format[i] == '%' && ft_strchr(types, format[i + 1]))
 		{
 			count += verify_and_call(format[i + 1], arg_box);
 			i++;
@@ -92,23 +87,20 @@ int ft_printf(const char *format, ...)
 			ft_putchar(format[i]);
 		i++;
 	}
-	va_end(arg_box);
-	return (count);
+		va_end(arg_box);
+		return (count);
 }
 
-int main(void)
+int main()
 {
 	int number = 123;
-	char *string = "abcdef";
-	char *empty_string = "";
-	int hex = 42;
+	char *string = "abcd";
+	int hexx = 42;
 
-	ft_printf("int:  %d\n", number);
-	ft_printf("string:  %s\n", string);
-	ft_printf("empty string:  %s\n", empty_string);
-	ft_printf("hexa:  %x\n", hex);
+	ft_printf("%d\n", number);
+	ft_printf("%s\n", string);
+	ft_printf("%x\n", hexx);
 }
-
 /*
 Assignment name  : ft_printf
 Expected files   : ft_printf.c
