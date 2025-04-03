@@ -36,14 +36,12 @@ int ft_putnbr(int number)
 
 int ft_puthex(int number)
 {
-	char *hex_array = "0123456789abcdef";
+	char *array = "0123456789abcdef";
 	int count = 0;
 
 	if (number >= 16)
-	{
 		ft_puthex(number / 16);
-		count = ft_putchar(hex_array[number % 16]);
-	}
+	count += ft_putchar(array[number % 16]);
 	return (count);
 }
 
@@ -96,6 +94,8 @@ int ft_printf(const char *format, ...)
 	return (count);
 }
 
+#include <stdio.h>
+
 int main(void)
 {
 	int number = 123;
@@ -107,6 +107,9 @@ int main(void)
 	ft_printf("string:  %s\n", string);
 	ft_printf("empty string:  %s\n", empty_string);
 	ft_printf("hexa:  %x\n", hex);
+	printf("printf normal hexa:  %x\n", hex);
+
+	
 }
 
 /*

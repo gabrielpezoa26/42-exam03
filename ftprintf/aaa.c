@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <stdlib.h>
 #include <stdarg.h>
 
 
@@ -13,6 +12,11 @@ static int ft_putnbr(int number)
 {
 	int count = 0;
 
+	if (number < 0)
+	{
+		count += ft_putchar('-');
+		number *= (-1);
+	}
 	if (number >= 10)
 		ft_putnbr(number / 10);
 	count += ft_putchar(number % 10 + '0');
@@ -38,7 +42,7 @@ static int ft_puthex(int number)
 
 	if (number >= 16)
 		ft_puthex(number / 16);
-	count += ft_putchar(array[number] % 16);
+	count += ft_putchar(array[number % 16]);
 	return (count);
 }
 
@@ -91,15 +95,22 @@ int ft_printf(const char *format, ... )
 		return (count);
 }
 
+#include <stdio.h>
+
 int main()
 {
 	int number = 123;
 	char *string = "abcd";
-	int hexx = 42;
+	int hexx = 10;
 
-	ft_printf("%d\n", number);
-	ft_printf("%s\n", string);
-	ft_printf("%x\n", hexx);
+	ft_printf("int: %d\n", number);
+	printf("printf int: %d\n\n", number);
+	
+	ft_printf("string: %s\n", string);
+	printf("printf string: %s\n\n", string);
+	
+	ft_printf("hexa: %x\n", hexx);
+	printf("printf hex: %x\n\n", hexx);
 }
 /*
 Assignment name  : ft_printf
