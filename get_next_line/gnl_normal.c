@@ -10,11 +10,9 @@
 
 char	*get_next_line(int fd);
 
-#endif 
-
 char	*ft_strdup(char *str)
 {
-	int i = 0;
+	int i= 0;
 	char	*dest;
 
 	while (str[i])
