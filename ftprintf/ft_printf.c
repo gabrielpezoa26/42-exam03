@@ -51,7 +51,7 @@ char *ft_strchr(char *string, int to_find)
 
 	while(string[i] != '\0')
 	{
-		if (string[i] == (unsigned char)to_find)
+		if (string[i] == (char)to_find)
 			return ((char *)&string[i]);
 		i++;
 	}
