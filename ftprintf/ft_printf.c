@@ -11,6 +11,8 @@ int ft_putstr(char *str)
 {
 	int i = 0;
 
+	if (str == NULL)
+		str = "(null)";
 	while (str[i] != '\0')
 	{
 		ft_putchar(str[i]);
@@ -29,7 +31,7 @@ int ft_putnbr(int number)
 		number *= (-1);
 	}
 	if (number >= 10)
-		ft_putnbr(number / 10);
+		count += ft_putnbr(number / 10);
 	count += ft_putchar(number % 10 + '0');
 	return (count);
 }
@@ -40,7 +42,7 @@ int ft_puthex(int number)
 	int count = 0;
 
 	if (number >= 16)
-		ft_puthex(number / 16);
+		count += ft_puthex(number / 16);
 	count += ft_putchar(array[number % 16]);
 	return (count);
 }
@@ -87,7 +89,7 @@ int ft_printf(const char *format, ...)
 			i++;
 		}
 		else
-			ft_putchar(format[i]);
+			count += ft_putchar(format[i]);
 		i++;
 	}
 	va_end(arg_box);
