@@ -94,6 +94,17 @@ int ft_printf(const char *format, ...)
 	return (count);
 }
 
+
+
+
+
+
+
+
+
+
+
+
 #include <stdio.h>
 
 int main(void)

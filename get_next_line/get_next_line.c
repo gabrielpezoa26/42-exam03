@@ -9,7 +9,7 @@
 
 char	*get_next_line(int fd);
 
-int ft_strlen(char *str)
+static int ft_strlen(char *str)
 {
 	int i = 0;
 
@@ -17,7 +17,7 @@ int ft_strlen(char *str)
 		i++;
 	return (i);
 }
-char	*ft_strdup(char *src)
+static char	*ft_strdup(char *src)
 {
 	char *result;
 	int i = 0;
@@ -57,7 +57,9 @@ char *get_next_line(int fd)
 		line[i++] = buffer[position++];
 		if (buffer[position] == '\n')
 			break ;
-	}	
+	}
+
+
 	line[i] = '\0';
 	if (i == 0)
 		return (NULL);
